@@ -3,11 +3,11 @@ package com.aajju.bigmatch2.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aajju.bigmatch2.Match;
@@ -36,7 +36,7 @@ import static com.aajju.bigmatch2.StaticAll.mFormat;
  * Created by aajju on 2017-01-26.
  */
 
-public class ESportsFragment extends Fragment {
+public class ESportsFragment extends MainFragment {
     private Api mApi;
 
     private ImageView mLolChampionsImageView;
@@ -52,6 +52,13 @@ public class ESportsFragment extends Fragment {
     private boolean mOverwatchChecked = false;
     private boolean mStarcraftChecked = false;
     private boolean mOtherGameChecked = false;
+
+    private TextView mLolChampionsNumber;
+    private TextView mLolWorldCupNumber;
+    private TextView mLolOtherNumber;
+    private TextView mOverwatchNumber;
+    private TextView mStarcraftNumber;
+    private TextView mOtherGameNumber;
 
 
     public static ESportsFragment newInstance(String data){
@@ -80,6 +87,14 @@ public class ESportsFragment extends Fragment {
         mOverwatchImageView = (ImageView) view.findViewById(R.id.overwatch_iv);
         mStarcraftImageView = (ImageView) view.findViewById(R.id.starcraft_iv);
         mOtherGameImageView = (ImageView) view.findViewById(R.id.other_game_iv);
+
+        mLolChampionsNumber = (TextView) view.findViewById(R.id.lol_champions_text);
+        mLolWorldCupNumber = (TextView) view.findViewById(R.id.lol_world_cup_text);
+        mLolOtherNumber = (TextView) view.findViewById(R.id.lol_other_text);
+        mOverwatchNumber = (TextView) view.findViewById(R.id.overwatch_text);
+        mStarcraftNumber = (TextView) view.findViewById(R.id.starcraft_text);
+        mOtherGameNumber = (TextView) view.findViewById(R.id.other_game_text);
+
 
         final Intent intent = new Intent(getActivity(), MatchActivity.class);
 
@@ -184,31 +199,7 @@ public class ESportsFragment extends Fragment {
         mApi.getMatchList(matchDay, LCK).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mLolChampionsImageView.setVisibility(View.GONE);
-                    mLolChampionsChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mLolChampionsImageView.setVisibility(View.VISIBLE);
-                mLolChampionsChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mLolChampionsImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mLolChampionsImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mLolChampionsImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mLolChampionsImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mLolChampionsImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mLolChampionsImageView.setImageResource(R.drawable.number6);
-                }
-
+                mLolChampionsChecked = setImageView(mLolChampionsImageView, mLolChampionsNumber, response, call);
             }
 
             @Override
@@ -221,32 +212,7 @@ public class ESportsFragment extends Fragment {
         mApi.getMatchList(matchDay, LOL_WORLD_CUP).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mLolWorldCupImageView.setVisibility(View.GONE);
-                    mLolWorldCupChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mLolWorldCupImageView.setVisibility(View.VISIBLE);
-                mLolWorldCupChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mLolWorldCupImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mLolWorldCupImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mLolWorldCupImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mLolWorldCupImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mLolWorldCupImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mLolWorldCupImageView.setImageResource(R.drawable.number6);
-                } else {
-
-                }
+                mLolWorldCupChecked = setImageView(mLolWorldCupImageView, mLolWorldCupNumber, response, call);
             }
 
             @Override
@@ -259,32 +225,7 @@ public class ESportsFragment extends Fragment {
         mApi.getMatchList(matchDay, OTHER_BIG_MATCH_LOL).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mLolOtherImageView.setVisibility(View.GONE);
-                    mLolOtherChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mLolOtherImageView.setVisibility(View.VISIBLE);
-                mLolOtherChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mLolOtherImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mLolOtherImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mLolOtherImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mLolOtherImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mLolOtherImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mLolOtherImageView.setImageResource(R.drawable.number6);
-                } else {
-
-                }
+                mLolOtherChecked = setImageView(mLolOtherImageView, mLolOtherNumber, response, call);
             }
 
             @Override
@@ -298,32 +239,7 @@ public class ESportsFragment extends Fragment {
         mApi.getMatchList(matchDay, OVERWATCH).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mOverwatchImageView.setVisibility(View.GONE);
-                    mOverwatchChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mOverwatchImageView.setVisibility(View.VISIBLE);
-                mOverwatchChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mOverwatchImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mOverwatchImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mOverwatchImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mOverwatchImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mOverwatchImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mOverwatchImageView.setImageResource(R.drawable.number6);
-                } else {
-
-                }
+                mOverwatchChecked = setImageView(mOverwatchImageView, mOverwatchNumber, response, call);
             }
 
             @Override
@@ -337,32 +253,7 @@ public class ESportsFragment extends Fragment {
         mApi.getMatchList(matchDay, STARCRAFT).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mStarcraftImageView.setVisibility(View.GONE);
-                    mStarcraftChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mStarcraftImageView.setVisibility(View.VISIBLE);
-                mStarcraftChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mStarcraftImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mStarcraftImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mStarcraftImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mStarcraftImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mStarcraftImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mStarcraftImageView.setImageResource(R.drawable.number6);
-                } else {
-
-                }
+                mStarcraftChecked = setImageView(mStarcraftImageView, mStarcraftNumber, response, call);
             }
 
             @Override
@@ -375,32 +266,8 @@ public class ESportsFragment extends Fragment {
         mApi.getMatchList(matchDay, OTHER_GAME).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mOtherGameImageView.setVisibility(View.GONE);
-                    mOtherGameChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mOtherGameImageView.setVisibility(View.VISIBLE);
-                mOtherGameChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mOtherGameImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mOtherGameImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mOtherGameImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mOtherGameImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mOtherGameImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mOtherGameImageView.setImageResource(R.drawable.number6);
-                } else {
+                mOtherGameChecked = setImageView(mOtherGameImageView, mOtherGameNumber, response, call);
 
-                }
             }
 
             @Override

@@ -3,7 +3,6 @@ package com.aajju.bigmatch2.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,7 @@ import static com.aajju.bigmatch2.StaticAll.mFormat;
  * Created by aajju on 2017-01-26.
  */
 
-public class OtherSportsFragment extends Fragment {
+public class OtherSportsFragment extends MainFragment {
     private Api mApi;
 
     private ImageView mOtherBasketBallImageView;
@@ -50,6 +49,13 @@ public class OtherSportsFragment extends Fragment {
     private boolean mOtherUfcChecked = false;
     private boolean mOtherKoreaTeamChecked = false;
     private boolean mOtherSportsChecked = false;
+
+    private TextView mOtherBasketBallNumber;
+    private TextView mOtherValleyBallNumber;
+    private TextView mOtherUfcNumber;
+    private TextView mOtherKoreaTeamNumber;
+    private TextView mOtherSportsNumber;
+
 
     public static OtherSportsFragment newInstance(String data) {
         OtherSportsFragment fragment = new OtherSportsFragment();
@@ -78,6 +84,12 @@ public class OtherSportsFragment extends Fragment {
         mOtherUfcImageView = (ImageView) view.findViewById(R.id.other_ufc_iv);
         mOtherKoreaTeamImageView = (ImageView) view.findViewById(R.id.other_korea_team_iv);
         mOtherSportsIamgeView = (ImageView) view.findViewById(R.id.other_sports_iv);
+
+        mOtherBasketBallNumber = (TextView) view.findViewById(R.id.other_basketball_text);
+        mOtherValleyBallNumber = (TextView) view.findViewById(R.id.other_valleyball_text);
+        mOtherUfcNumber = (TextView) view.findViewById(R.id.other_ufc_text);
+        mOtherKoreaTeamNumber = (TextView) view.findViewById(R.id.other_korea_team_text);
+        mOtherSportsNumber = (TextView) view.findViewById(R.id.other_sports_text);
 
         mApi = HttpHelper.getAPI();
         getMatchList(mFormat.format(mDate));
@@ -166,32 +178,7 @@ public class OtherSportsFragment extends Fragment {
         mApi.getMatchList(matchDay, OTHER_BASKETBALL).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mOtherBasketBallImageView.setVisibility(View.GONE);
-                    mOtherBasketBallChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mOtherBasketBallImageView.setVisibility(View.VISIBLE);
-                mOtherBasketBallChecked = true;
-                if (numOfList == 0) {
-                    return;
-                } else if (numOfList == 1) {
-                    mOtherBasketBallImageView.setImageResource(R.drawable.number1);
-                } else if (numOfList == 2) {
-                    mOtherBasketBallImageView.setImageResource(R.drawable.number2);
-                } else if (numOfList == 3) {
-                    mOtherBasketBallImageView.setImageResource(R.drawable.number3);
-                } else if (numOfList == 4) {
-                    mOtherBasketBallImageView.setImageResource(R.drawable.number4);
-                } else if (numOfList == 5) {
-                    mOtherBasketBallImageView.setImageResource(R.drawable.number5);
-                } else if (numOfList == 6) {
-                    mOtherBasketBallImageView.setImageResource(R.drawable.number6);
-                }
-
-
+                mOtherBasketBallChecked = setImageView(mOtherBasketBallImageView, mOtherBasketBallNumber, response, call);
             }
 
             @Override
@@ -204,31 +191,7 @@ public class OtherSportsFragment extends Fragment {
         mApi.getMatchList(matchDay, OTHER_VALLEYBALL).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mOtherValleyBallImageView.setVisibility(View.GONE);
-                    mOtherValleyBallChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mOtherValleyBallImageView.setVisibility(View.VISIBLE);
-                mOtherValleyBallChecked = true;
-                if (numOfList == 0) {
-                    return;
-                } else if (numOfList == 1) {
-                    mOtherValleyBallImageView.setImageResource(R.drawable.number1);
-                } else if (numOfList == 2) {
-                    mOtherValleyBallImageView.setImageResource(R.drawable.number2);
-                } else if (numOfList == 3) {
-                    mOtherValleyBallImageView.setImageResource(R.drawable.number3);
-                } else if (numOfList == 4) {
-                    mOtherValleyBallImageView.setImageResource(R.drawable.number4);
-                } else if (numOfList == 5) {
-                    mOtherValleyBallImageView.setImageResource(R.drawable.number5);
-                } else if (numOfList == 6) {
-                    mOtherValleyBallImageView.setImageResource(R.drawable.number6);
-                }
-
+                mOtherValleyBallChecked = setImageView(mOtherValleyBallImageView, mOtherValleyBallNumber, response, call);
             }
 
             @Override
@@ -241,31 +204,7 @@ public class OtherSportsFragment extends Fragment {
         mApi.getMatchList(matchDay, OTHER_UFC).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mOtherUfcImageView.setVisibility(View.GONE);
-                    mOtherUfcChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mOtherUfcImageView.setVisibility(View.VISIBLE);
-                mOtherUfcChecked = true;
-                if (numOfList == 0) {
-                    return;
-                } else if (numOfList == 1) {
-                    mOtherUfcImageView.setImageResource(R.drawable.number1);
-                } else if (numOfList == 2) {
-                    mOtherUfcImageView.setImageResource(R.drawable.number2);
-                } else if (numOfList == 3) {
-                    mOtherUfcImageView.setImageResource(R.drawable.number3);
-                } else if (numOfList == 4) {
-                    mOtherUfcImageView.setImageResource(R.drawable.number4);
-                } else if (numOfList == 5) {
-                    mOtherUfcImageView.setImageResource(R.drawable.number5);
-                } else if (numOfList == 6) {
-                    mOtherUfcImageView.setImageResource(R.drawable.number6);
-                }
-
+                mOtherUfcChecked = setImageView(mOtherUfcImageView, mOtherUfcNumber, response, call);
             }
 
             @Override
@@ -279,31 +218,7 @@ public class OtherSportsFragment extends Fragment {
         mApi.getMatchList(matchDay, OTHER_KOREA_TEAM).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mOtherKoreaTeamImageView.setVisibility(View.GONE);
-                    mOtherKoreaTeamChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mOtherKoreaTeamImageView.setVisibility(View.VISIBLE);
-                mOtherKoreaTeamChecked = true;
-                if (numOfList == 0) {
-                    return;
-                } else if (numOfList == 1) {
-                    mOtherKoreaTeamImageView.setImageResource(R.drawable.number1);
-                } else if (numOfList == 2) {
-                    mOtherKoreaTeamImageView.setImageResource(R.drawable.number2);
-                } else if (numOfList == 3) {
-                    mOtherKoreaTeamImageView.setImageResource(R.drawable.number3);
-                } else if (numOfList == 4) {
-                    mOtherKoreaTeamImageView.setImageResource(R.drawable.number4);
-                } else if (numOfList == 5) {
-                    mOtherKoreaTeamImageView.setImageResource(R.drawable.number5);
-                } else if (numOfList == 6) {
-                    mOtherKoreaTeamImageView.setImageResource(R.drawable.number6);
-                }
-
+                mOtherKoreaTeamChecked = setImageView(mOtherKoreaTeamImageView, mOtherKoreaTeamNumber, response, call);
             }
 
             @Override
@@ -316,30 +231,7 @@ public class OtherSportsFragment extends Fragment {
         mApi.getMatchList(matchDay, OTHER_SPORTS).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mOtherSportsIamgeView.setVisibility(View.GONE);
-                    mOtherSportsChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mOtherSportsIamgeView.setVisibility(View.VISIBLE);
-                mOtherSportsChecked = true;
-                if (numOfList == 0) {
-                    return;
-                } else if (numOfList == 1) {
-                    mOtherSportsIamgeView.setImageResource(R.drawable.number1);
-                } else if (numOfList == 2) {
-                    mOtherSportsIamgeView.setImageResource(R.drawable.number2);
-                } else if (numOfList == 3) {
-                    mOtherSportsIamgeView.setImageResource(R.drawable.number3);
-                } else if (numOfList == 4) {
-                    mOtherSportsIamgeView.setImageResource(R.drawable.number4);
-                } else if (numOfList == 5) {
-                    mOtherSportsIamgeView.setImageResource(R.drawable.number5);
-                } else if (numOfList == 6) {
-                    mOtherSportsIamgeView.setImageResource(R.drawable.number6);
-                }
+                mOtherSportsChecked = setImageView(mOtherSportsIamgeView, mOtherSportsNumber, response, call);
             }
 
             @Override
@@ -347,18 +239,5 @@ public class OtherSportsFragment extends Fragment {
             }
         });
     }
-
-    public boolean setImageView(ImageView imageView, TextView textView, boolean isChecked, Response<List<Match>> response, Call<List<Match>> data) {
-        if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-            imageView.setVisibility(View.GONE);
-            return false;
-        }
-        int numOfList = response.body().size();
-        imageView.setVisibility(View.VISIBLE);
-        textView.setText("" + numOfList);
-        return true;
-    }
-
 
 }

@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -47,15 +47,30 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/main_premier_league_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/main_premier_league_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/main_premier_league_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -74,16 +89,30 @@
                         android:text="     La liga"
                         android:textColor="#000000"
                         android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/main_la_liga_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/main_la_liga_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/main_la_liga_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -103,15 +132,30 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/main_bundesriga_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/main_bundesriga_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/main_bundesriga_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -130,16 +174,30 @@
                         android:text="     Seria A"
                         android:textColor="#000000"
                         android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/main_serie_a_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/main_serie_a_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/main_serie_a_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -158,16 +216,30 @@
                         android:text="     K 리그"
                         android:textColor="#000000"
                         android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/main_k_league_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/main_k_league_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/main_k_league_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -204,16 +276,30 @@
                         android:text="     UEFA Champions League"
                         android:textColor="#000000"
                         android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/main_champions_league_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/main_champions_league_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/main_champions_league_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -232,16 +318,30 @@
                         android:text="     UEFA Europa League"
                         android:textColor="#000000"
                         android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/main_europa_league_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/main_europa_league_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/main_europa_league_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -261,15 +361,30 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/main_afc_champions_league_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/main_afc_champions_league_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/main_afc_champions_league_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -306,15 +421,30 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/main_a_match_korea_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/main_a_match_korea_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/main_a_match_korea_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -334,15 +464,30 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/main_a_match_others_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/main_a_match_others_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/main_a_match_others_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
 

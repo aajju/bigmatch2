@@ -48,15 +48,30 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/baseball_kbo_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/baseball_kbo_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/baseball_kbo_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -76,15 +91,30 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/baseball_korean_major_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/baseball_korean_major_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/baseball_korean_major_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -103,16 +133,30 @@
                         android:text="     MLB"
                         android:textColor="#000000"
                         android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/baseball_mlb_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/baseball_mlb_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/baseball_mlb_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -132,15 +176,30 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/baseball_korea_team_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/baseball_korea_team_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/baseball_korea_team_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -160,15 +219,30 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/baseball_other_bigmatch_iv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:padding="5dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/textline" />
+                        android:background="@drawable/textline">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/baseball_other_bigmatch_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_data_list" />
+
+                        <TextView
+                            android:id="@+id/baseball_other_bigmatch_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="#FFFFFF" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
 
             </LinearLayout>

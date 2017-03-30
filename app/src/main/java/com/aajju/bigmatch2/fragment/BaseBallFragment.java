@@ -3,11 +3,11 @@ package com.aajju.bigmatch2.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aajju.bigmatch2.Match;
@@ -35,7 +35,7 @@ import static com.aajju.bigmatch2.StaticAll.mFormat;
  * Created by aajju on 2017-01-26.
  */
 
-public class BaseBallFragment extends Fragment {
+public class BaseBallFragment extends MainFragment {
     private Api mApi;
 
     private ImageView mKboImageView;
@@ -49,6 +49,12 @@ public class BaseBallFragment extends Fragment {
     private boolean mMlbChecked = false;
     private boolean mKoreaTeamChecked = false;
     private boolean mOtherBigMatchChecked = false;
+
+    private TextView mKboNumber;
+    private TextView mKoreanMajorNumber;
+    private TextView mMlbNumber;
+    private TextView mKoreaTeamNumber;
+    private TextView mOtherBigMatchNumber;
 
     public static BaseBallFragment newInstance(String data){
         BaseBallFragment fragment = new BaseBallFragment();
@@ -75,6 +81,12 @@ public class BaseBallFragment extends Fragment {
         mMlbImageView = (ImageView) view.findViewById(R.id.baseball_mlb_iv);
         mKoreaTeamImageView = (ImageView) view.findViewById(R.id.baseball_korea_team_iv);
         mOtherBigMatchImageView = (ImageView) view.findViewById(R.id.baseball_other_bigmatch_iv);
+
+        mKboNumber = (TextView) view.findViewById(R.id.baseball_kbo_text);
+        mKoreanMajorNumber = (TextView) view.findViewById(R.id.baseball_korean_major_text);
+        mMlbNumber = (TextView) view.findViewById(R.id.baseball_mlb_text);
+        mKoreaTeamNumber = (TextView) view.findViewById(R.id.baseball_korea_team_text);
+        mOtherBigMatchNumber = (TextView) view.findViewById(R.id.baseball_other_bigmatch_text);
 
         final Intent intent = new Intent(getActivity(), MatchActivity.class);
 
@@ -167,31 +179,7 @@ public class BaseBallFragment extends Fragment {
         mApi.getMatchList(matchDay, KBO).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mKboImageView.setVisibility(View.GONE);
-                    mKboChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mKboImageView.setVisibility(View.VISIBLE);
-                mKboChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mKboImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mKboImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mKboImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mKboImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mKboImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mKboImageView.setImageResource(R.drawable.number6);
-                }
-
+                mKboChecked = setImageView(mKboImageView, mKboNumber, response, call);
             }
 
             @Override
@@ -204,32 +192,7 @@ public class BaseBallFragment extends Fragment {
         mApi.getMatchList(matchDay, KOREAN_MAJOR).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mKoreanMajorImageView.setVisibility(View.GONE);
-                    mKoreanMajorChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mKoreanMajorImageView.setVisibility(View.VISIBLE);
-                mKoreanMajorChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mKoreanMajorImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mKoreanMajorImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mKoreanMajorImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mKoreanMajorImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mKoreanMajorImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mKoreanMajorImageView.setImageResource(R.drawable.number6);
-                } else {
-
-                }
+                mKoreanMajorChecked = setImageView(mKoreanMajorImageView, mKoreanMajorNumber, response, call);
             }
 
             @Override
@@ -242,32 +205,7 @@ public class BaseBallFragment extends Fragment {
         mApi.getMatchList(matchDay, MLB).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mMlbImageView.setVisibility(View.GONE);
-                    mMlbChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mMlbImageView.setVisibility(View.VISIBLE);
-                mMlbChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mMlbImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mMlbImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mMlbImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mMlbImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mMlbImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mMlbImageView.setImageResource(R.drawable.number6);
-                } else {
-
-                }
+                mMlbChecked = setImageView(mMlbImageView, mMlbNumber, response, call);
             }
 
             @Override
@@ -281,32 +219,7 @@ public class BaseBallFragment extends Fragment {
         mApi.getMatchList(matchDay, KOREA_BASEBALL).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mKoreaTeamImageView.setVisibility(View.GONE);
-                    mKoreaTeamChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mKoreaTeamImageView.setVisibility(View.VISIBLE);
-                mKoreaTeamChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mKoreaTeamImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mKoreaTeamImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mKoreaTeamImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mKoreaTeamImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mKoreaTeamImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mKoreaTeamImageView.setImageResource(R.drawable.number6);
-                } else {
-
-                }
+                mKoreaTeamChecked = setImageView(mKoreaTeamImageView, mKoreaTeamNumber, response, call);
             }
 
             @Override
@@ -320,32 +233,7 @@ public class BaseBallFragment extends Fragment {
         mApi.getMatchList(matchDay, OTHER_BIG_MATCH_BASEBALL).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-                    mOtherBigMatchImageView.setVisibility(View.GONE);
-                    mOtherBigMatchChecked = false;
-                    return;
-                }
-                int numOfList = response.body().size();
-                mOtherBigMatchImageView.setVisibility(View.VISIBLE);
-                mOtherBigMatchChecked = true;
-                if(numOfList == 0){
-                    return;
-                } else if(numOfList == 1){
-                    mOtherBigMatchImageView.setImageResource(R.drawable.number1);
-                } else if(numOfList == 2){
-                    mOtherBigMatchImageView.setImageResource(R.drawable.number2);
-                }  else if(numOfList == 3){
-                    mOtherBigMatchImageView.setImageResource(R.drawable.number3);
-                } else if(numOfList == 4){
-                    mOtherBigMatchImageView.setImageResource(R.drawable.number4);
-                } else if(numOfList == 5){
-                    mOtherBigMatchImageView.setImageResource(R.drawable.number5);
-                } else if(numOfList == 6){
-                    mOtherBigMatchImageView.setImageResource(R.drawable.number6);
-                } else {
-
-                }
+                mOtherBigMatchChecked = setImageView(mOtherBigMatchImageView, mOtherBigMatchNumber, response, call);
             }
 
             @Override
