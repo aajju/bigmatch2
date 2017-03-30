@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_match"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.aajju.bigmatch2.activity.MatchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#000000">
+        <ImageView
+            android:id="@+id/action_back_btn"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_action_back_btn"
+            android:scaleType="centerCrop"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/match_action_title_tv"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center_vertical"
+            android:text=" 빅매치 하이라이트"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:text="메뉴"
+            android:id="@+id/main_action_btn_tv"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/main_today_iv"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/today"/>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/main_left_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/leftppt3" />
+
+        <TextView
+            android:textColor="#BDBDBD"
+            android:textStyle="bold"
+            android:id="@+id/main_date_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:text="2017-03-07"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/main_right_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/rightppt3" />
+
+        <ImageView
+            android:id="@+id/main_calendar_iv"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/calendar2"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#000000"/>
+
+
+    <ListView
+        android:id="@+id/match_lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <com.mocoplex.adlib.AdlibAdViewContainer
+        android:id="@+id/main_ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

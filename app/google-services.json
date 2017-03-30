@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "125890364867",
+    "firebase_url": "https://nospobigmatch2.firebaseio.com",
+    "project_id": "nospobigmatch2",
+    "storage_bucket": "nospobigmatch2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125890364867:android:61677ade94f6a7e0",
+        "android_client_info": {
+          "package_name": "com.aajju.bigmatch2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125890364867-ihu3m0u6eh2233utqspu8h5n09vcm8l1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDajczAbmwf8RS_jcav7xL7grp6wuFUSgQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

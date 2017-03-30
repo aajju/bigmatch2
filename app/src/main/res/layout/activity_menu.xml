@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.aajju.bigmatch2.activity.MenuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#000000">
+        <ImageView
+            android:id="@+id/action_back_btn"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_action_back_btn"
+            android:scaleType="centerCrop"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/match_action_title_tv"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center_vertical"
+            android:text=" 메뉴"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:text="메뉴"
+            android:id="@+id/main_action_btn_tv"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_margin="20dp"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=
+            "현재 베타버전이라
+메뉴부분은 구현되지 않았습니다.\n\n메뉴 구현 예정\n
+    - 로그인\n
+    - 푸시알림 설정\n
+    - 버전 정보\n
+    - 이용약관 등\n\n
+
+하이라이트는 제가 생각했을 때,\n
+빅매치라고 판단되는 것들만 올리며\n
+개인적인 사정이 있거나,\n
+너무 졸릴때는 업데이트가 조금 늦을 수 있어요~~~" />
+
+</LinearLayout>
