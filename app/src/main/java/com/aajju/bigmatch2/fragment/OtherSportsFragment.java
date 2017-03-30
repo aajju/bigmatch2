@@ -346,7 +346,6 @@ public class OtherSportsFragment extends Fragment {
             public void onFailure(Call<List<Match>> call, Throwable t) {
             }
         });
-
     }
 
     public boolean setImageView(ImageView imageView, TextView textView, boolean isChecked, Response<List<Match>> response, Call<List<Match>> data) {
