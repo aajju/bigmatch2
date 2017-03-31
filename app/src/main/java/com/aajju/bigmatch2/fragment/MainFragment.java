@@ -3,7 +3,6 @@ package com.aajju.bigmatch2.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +42,7 @@ import static com.aajju.bigmatch2.StaticAll.mFormat;
  * Created by aajju on 2017-01-26.
  */
 
-public class MainFragment extends Fragment {
+public class MainFragment extends ParentFragment {
     private Api mApi;
 
     private ImageView mPremierLeagueImageView;
@@ -436,15 +435,5 @@ public class MainFragment extends Fragment {
 
     }
 
-    public boolean setImageView(ImageView imageView, TextView textView, Response<List<Match>> response, Call<List<Match>> data) {
-        if (!response.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "가져올 메모 리스트가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
-            imageView.setVisibility(View.GONE);
-            return false;
-        }
-        int numOfList = response.body().size();
-        imageView.setVisibility(View.VISIBLE);
-        textView.setText("" + numOfList);
-        return true;
-    }
+
 }

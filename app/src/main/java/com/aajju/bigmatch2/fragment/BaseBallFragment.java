@@ -35,7 +35,7 @@ import static com.aajju.bigmatch2.StaticAll.mFormat;
  * Created by aajju on 2017-01-26.
  */
 
-public class BaseBallFragment extends MainFragment {
+public class BaseBallFragment extends ParentFragment {
     private Api mApi;
 
     private ImageView mKboImageView;

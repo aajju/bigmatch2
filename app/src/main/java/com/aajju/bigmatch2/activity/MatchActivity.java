@@ -163,7 +163,7 @@ public class MatchActivity extends AppCompatActivity {
         /**
          *  해당 리그 경기들 서버에 요청함 --> list에 담음
          */
-        getList();
+        getList(true);
 
 
         //액션바 백버튼
@@ -179,11 +179,11 @@ public class MatchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mDate = mDate - 60 * 60 * 24 * 1000;
-                mDateTextView.setText(mFormat.format(mDate));
                 /**
                  *  하루전날 날짜 받아와서 서버에 요청
                  */
-                getList();
+                getList(false);
+//                mDateTextView.setText(mFormat.format(mDate));
             }
         });
 
@@ -192,11 +192,11 @@ public class MatchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mDate = mDate + 60 * 60 * 24 * 1000;
-                mDateTextView.setText(mFormat.format(mDate));
                 /**
                  * 다음날 날짜 받아와서 서버에 요청
                  */
-                getList();
+                getList(true);
+//                mDateTextView.setText(mFormat.format(mDate));
             }
         });
 
@@ -206,7 +206,7 @@ public class MatchActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mDate = System.currentTimeMillis();
                 mDateTextView.setText(mFormat.format(mDate));
-                getList();
+                getList(false);
             }
         });
 
@@ -246,18 +246,38 @@ public class MatchActivity extends AppCompatActivity {
             mDate = mSelectedDate.getTime();
 
             mDateTextView.setText(mFormat.format(mDate));
-            getList();
+            getList(false);
         }
     };
 
 
-    private void getList() {
+    private void getList(final boolean leftRight) {
         mApi.getMatchList(mFormat.format(mDate), mLeague).enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                mArrayList = response.body();
-                mAdapter = new MatchAdapter(mArrayList);
-                mListView.setAdapter(mAdapter);
+                if (!response.isSuccessful()) {
+                    if (!leftRight) {
+                        if (mFormat.format(mDate).equals("2017-03-15")) {
+                            Toast.makeText(MatchActivity.this, "하이라이트 영상이 없습니다", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        mDate = mDate - 60 * 60 * 24 * 1000;
+                        getList(false);
+                    } else {
+                        if (mFormat.format(mDate).equals(mFormat.format(System.currentTimeMillis()))) {
+                            Toast.makeText(MatchActivity.this, "하이라이트 영상이 없습니다", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        mDate = mDate + 60 * 60 * 24 * 1000;
+//                        mDateTextView.setText(mFormat.format(mDate));
+                        getList(true);
+                    }
+                } else {
+                    mDateTextView.setText(mFormat.format(mDate));
+                    mArrayList = response.body();
+                    mAdapter = new MatchAdapter(mArrayList);
+                    mListView.setAdapter(mAdapter);
+                }
             }
 
             @Override
@@ -324,8 +344,8 @@ public class MatchActivity extends AppCompatActivity {
             if (adsCount % 4 == 2) {
                 // 전면광고 띄우기
                 mManager.loadFullInterstitialAd(getApplicationContext());
-                Toast.makeText(MatchActivity.this, "ddd", Toast.LENGTH_SHORT).show();
             }
         }
     };
+
 }
